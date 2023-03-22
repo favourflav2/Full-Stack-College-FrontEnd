@@ -95,6 +95,7 @@ export default function SignUp() {
                               value={formData.password}
                               onChange={(e)=>handleChange(e)}
                               id="password"
+                              autoComplete=''
                               className='h-[39px] rounded-xl indent-3 bg-transparent border-2 border-gray-300 mb-3 text-gray-300 text-sm md:text-lg'
                               placeholder='Password..'
                             />
@@ -107,6 +108,7 @@ export default function SignUp() {
                               value={formData.confirmPassword}
                               onChange={(e)=>handleChange(e)}
                               id="Confirm Password"
+                              autoComplete=''
                               className='h-[39px] rounded-xl indent-3 bg-transparent border-2 border-gray-300 mb-3 text-gray-300 text-sm md:text-lg'
                               placeholder='Confirm Password...'
                             />

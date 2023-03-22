@@ -24,6 +24,7 @@ import DetailsCard from "../../components/Card/DetailsCard";
 
 export default function Itemdetails() {
   const { id } = useParams();
+  const {user} = useSelector(state => state.auth)
   const dispatch = useDispatch();
   const {
     dataById,
@@ -46,8 +47,8 @@ export default function Itemdetails() {
     (item) => item.name === schoolName
   );
   
-  //console.log(filterSavedSchools)
-  //console.log(filterSavedSchools)
+ 
+ 
 
   React.useEffect(() => {
     if (searchDataById || searchDegree === null) {
@@ -89,7 +90,7 @@ export default function Itemdetails() {
           {/* Title */}
           <Box className="flex flex-col justify-center mt-3 mb-10 items-center">
             <Typography className="text-3xl font-bold border-b-2 border-gray-300 text-gray-300">
-              {dataById?.map((item, index) => (
+              { dataById?.map((item, index) => (
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -111,7 +112,7 @@ export default function Itemdetails() {
 
            
 
-            {dataById?.map((item, index) => (
+            {user?.user?._id && dataById?.map((item, index) => (
               <Box key={index}>
                 {filterSavedSchools?.length > 0 ? (
                   <Typography
