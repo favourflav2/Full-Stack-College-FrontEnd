@@ -105,7 +105,8 @@ const collegeSlice = createSlice({
   },
   clearSavedCollegeName:(state) =>{
     state.savedCollegeName = []
-  }
+  },
+  
   
 
   },

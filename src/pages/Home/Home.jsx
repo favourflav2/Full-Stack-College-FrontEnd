@@ -13,7 +13,7 @@ import Words from "./Words";
 
 
 import { useDispatch, useSelector } from "react-redux";
-import {  searchData, setSearchDataNull } from "../../redux/features/collegeSlice";
+import {  searchData, setError, setSearchDataNull } from "../../redux/features/collegeSlice";
 import SearchCard from "../../components/Card/SearchCard";
 
 export default function Home() {
@@ -39,6 +39,8 @@ export default function Home() {
   React.useEffect(()=>{
      
     dispatch(setSearchDataNull())
+    setErrorLength('')
+    dispatch(setError())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
