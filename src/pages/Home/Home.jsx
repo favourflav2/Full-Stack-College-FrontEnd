@@ -24,6 +24,7 @@ export default function Home() {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   function handleClick() {
+    setErrorLength('')
     dispatch(searchData({search}))
   
   }
@@ -39,7 +40,6 @@ export default function Home() {
   React.useEffect(()=>{
      
     dispatch(setSearchDataNull())
-    setErrorLength('')
     dispatch(setError())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
