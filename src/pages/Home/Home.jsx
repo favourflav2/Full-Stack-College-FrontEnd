@@ -44,15 +44,15 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  if(loading){
-    return (
+  // if(loading){
+  //   return (
       
-        <Stack sx={{color: 'grey.500' }} className='home h-screen w-full flex items-center'>
-           <CircularProgress color="inherit" className="mt-[40px]"/>
-        </Stack>
+  //       <Stack sx={{color: 'grey.500' }} className='home h-screen w-full flex items-center'>
+  //          <CircularProgress color="inherit" className="mt-[40px]"/>
+  //       </Stack>
       
-    )
-  }
+  //   )
+  // }
 
   
 
