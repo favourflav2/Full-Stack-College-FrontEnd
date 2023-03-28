@@ -102,11 +102,11 @@ const collegeSlice = createSlice({
     },
   setSearchDataNull:(state) =>{
     state.searchData = null
+    state.loading = false
   },
   clearSavedCollegeName:(state) =>{
     state.savedCollegeName = []
   },
-  
   
 
   },

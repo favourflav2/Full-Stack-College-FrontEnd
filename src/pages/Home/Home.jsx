@@ -44,15 +44,15 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  // if(loading){
-  //   return (
+  if(loading){
+    return (
       
-  //       <Stack sx={{color: 'grey.500' }} className='home h-screen w-full flex items-center'>
-  //          <CircularProgress color="inherit" className="mt-[40px]"/>
-  //       </Stack>
+        <Stack sx={{color: 'grey.500' }} className='home h-screen w-full flex items-center'>
+           <CircularProgress color="inherit" className="mt-[40px]"/>
+        </Stack>
       
-  //   )
-  // }
+    )
+  }
 
   
 
@@ -84,8 +84,8 @@ export default function Home() {
                disabled={loading}
               className={
                 isNonMobile
-                  ? "border border-gray-300 w-[80px] ml-4 rounded-lg"
-                  : "border border-gray-300 w-[80px] ml-4 rounded-lg mt-5"
+                  ? "border border-gray-300 w-[80px] ml-4 rounded-lg hover:bg-black"
+                  : "border border-gray-300 w-[80px] ml-4 rounded-lg mt-5 hover:bg-black"
               }
               onClick={handleClick}
             >
