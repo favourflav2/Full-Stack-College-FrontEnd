@@ -15,17 +15,17 @@ export default function DetailsCard({item}) {
   //console.log(savedCollegeName)
 
   return (
-    <Box className="flex flex-col border border-gray-300">
+    <Box className="flex flex-col border border-black">
       <Box className="flex flex-col">
         <Box className='flex justify-between items-center ml-1 mb-1'>
-          <Typography className={isNonMobile? "text-base font-semibold text-gray-300":"text-sm font-bold text-gray-300 break-words  w-[70%]"}>
+          <Typography className={isNonMobile? "text-base font-semibold ":"text-sm font-bold  break-words  w-[70%]"}>
             <span className="text-red-600 text-xl">{firstLetter}</span>{other}
           </Typography>
           <Box className="flex items-center">
            
           </Box>
         </Box>
-        <Typography className="ml-2 text-gray-500 text-sm">
+        <Typography className="ml-2  text-sm">
           {" "}
           -{item?.credential?.title}
         </Typography>
@@ -33,7 +33,3 @@ export default function DetailsCard({item}) {
     </Box>
   );
 }
-
-
-// {isNonMobile? "text-3xl font-bold": "text-base font-bold"}
-//"text-base font-semibold text-gray-300"

@@ -82,14 +82,14 @@ export default function Itemdetails() {
   
 
   return (
-    <Box className="home h-auto w-auto flex justify-center ">
+    <Box className="home2 h-auto w-auto flex justify-center ">
       {/* Container Box */}
       <Box className="w-[90%] flex justify-center mt-[60px]">
         {/* Content Box */}
         <Box className="w-[90%]  flex flex-col">
           {/* Title */}
           <Box className="flex flex-col justify-center mt-3 mb-10 items-center">
-            <Typography className="text-3xl font-bold border-b-2 border-gray-300 text-gray-300">
+            <Typography className="text-3xl font-bold border-b-2 ">
               { dataById?.map((item, index) => (
                 <a
                   target="_blank"
@@ -103,7 +103,7 @@ export default function Itemdetails() {
                 >
                   <span className=" hover:text-blue-400">{item["school.name"]}{" "}</span>
                   
-                  <IconButton className="text-gray-300 hover:text-blue-300">
+                  <IconButton className=" hover:text-blue-300">
                     <ArrowForwardIcon />
                   </IconButton>
                 </a>
@@ -116,7 +116,7 @@ export default function Itemdetails() {
               <Box key={index}>
                 {filterSavedSchools?.length > 0 ? (
                   <Typography
-                    className=" text-gray-300 font-bold mt-3 bg-red-900 text-lg hover:bg-red-600 cursor-pointer p-1 rounded-lg"
+                    className="  font-bold mt-3 bg-red-900 text-lg hover:bg-red-600 cursor-pointer p-1 rounded-lg"
                     onClick={() =>
                       dispatch(
                         likeCollegeName({
@@ -133,7 +133,7 @@ export default function Itemdetails() {
                   </Typography>
                 ) : (
                   <Typography
-                    className=" text-gray-300 font-bold mt-3 bg-green-900 text-lg hover:bg-green-600 cursor-pointer p-1 rounded-lg"
+                    className="  font-bold mt-3 bg-green-900 text-lg hover:bg-green-600 cursor-pointer p-1 rounded-lg"
                     onClick={() =>
                       dispatch(
                         likeCollegeName({
@@ -155,10 +155,10 @@ export default function Itemdetails() {
 
           {/* Location */}
           <Box className="mt-[20px] flex flex-col mb-10">
-            <Typography className="text-gray-300 text-[25px] font-bold">
+            <Typography className=" text-[25px] font-bold">
               Location:
             </Typography>
-            <Box className="flex text-gray-300 mt-2">
+            <Box className="flex  mt-2">
               <Typography className="text-xl">
                 {dataById && dataById[0]["school.city"]},&nbsp;{" "}
                 {dataById && dataById[0]["school.state"]}, &nbsp;
@@ -169,15 +169,15 @@ export default function Itemdetails() {
 
           {/* Cost/About */}
           <Box className="mt-[20px] flex flex-col mb-10">
-            <Typography className="text-gray-300 text-[25px] font-bold">
+            <Typography className=" text-[25px] font-bold">
               Information:
             </Typography>
 
             {/* Inofrmation Content */}
-            <Box className="flex mt-6 flex-col text-gray-300">
+            <Box className="flex mt-6 flex-col ">
               {/* Attendence */}
               <Box className="flex flex-col ml-5">
-                <Typography className="text-white text-[19px] font-bold mb-4">
+                <Typography className="text-black text-[19px] font-bold mb-4">
                   Attendence
                 </Typography>
                 <Box className="flex my-1">
@@ -213,7 +213,7 @@ export default function Itemdetails() {
 
               {/* Costs */}
               <Box className="flex flex-col ml-5 mt-5">
-                <Typography className="text-white text-[19px] font-bold mb-4">
+                <Typography className="text-black text-[19px] font-bold mb-4">
                   Costs
                 </Typography>
                 <Box className="flex my-1">
@@ -269,7 +269,7 @@ export default function Itemdetails() {
               </Box>
             </Box>
           </Box>
-          <Box className="flex flex-col items-center justify-center text-gray-300 mt-5">
+          <Box className="flex flex-col items-center justify-center  mt-5">
             <Typography
               className={
                 isNonMobile ? "text-3xl font-bold" : "text-base font-bold"
@@ -295,7 +295,7 @@ export default function Itemdetails() {
 
           {numberOfPages && numberOfPages > 1 && (
             <Stack
-              className="text-gray-300 flex justify-center items-center mb-10 mt-5"
+              className=" flex justify-center items-center mb-10 mt-5"
               spacing={2}
             >
               <Typography>Page: {currentPage}</Typography>
@@ -303,7 +303,7 @@ export default function Itemdetails() {
                 count={numberOfPages}
                 page={currentPage}
                 onChange={handleChange}
-                sx={{ button: { color: "white" } }}
+                sx={{ button: { color: "black" } }}
                 variant="outlined"
                 color="primary"
               />

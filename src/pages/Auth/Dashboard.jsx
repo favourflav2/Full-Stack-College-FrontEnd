@@ -16,19 +16,19 @@ export default function Dashboard() {
     }
   },[user?.user?._id,dispatch])
   return (
-    <Box className="home h-screen flex justify-center">
+    <Box className="home2 h-screen flex justify-center">
       <Box className=" w-[90%] flex flex-col mt-12">
         <Box className="mb-5 flex justify-center">
-          <Typography className="text-2xl text-gray-300">Dashbaord</Typography>
+          <Typography className="text-2xl ">Dashbaord</Typography>
         </Box>
 
         <Box className="flex flex-col mt-5">
 
           <Box className="mb-10">
-            <Typography className="text-gray-300 text-xl">Welcome: <span className=" font-bold text-white">{userName}</span></Typography>
+            <Typography className=" text-xl">Welcome: <span className=" font-bold text-black">{userName}</span></Typography>
           </Box>
 
-          <Typography className="flex justify-center my-7 text-2xl font-bold text-gray-300">Your Saved Colleges</Typography>
+          <Typography className="flex justify-center my-7 text-2xl font-bold ">Your Saved Colleges</Typography>
 
           <Box>
             {savedCollegeName?.map((item,index)=>(

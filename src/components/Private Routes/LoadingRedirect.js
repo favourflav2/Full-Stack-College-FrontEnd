@@ -15,8 +15,8 @@ export default function LoadingRedirect() {
         return ()=> clearInterval(interval)
     },[count,navigate])
   return (
-    <Box className="flex justify-center home w-screen h-screen">
-        <Typography className='text-white flex justify-center items-center'>Redirecting You in {count} seconds</Typography>
+    <Box className="flex justify-center home2 w-screen h-screen">
+        <Typography className='text-black flex justify-center items-center'>Redirecting You in {count} seconds</Typography>
     </Box>
   )
 }

@@ -43,34 +43,34 @@ export default function NavBar() {
   //console.log(process.env.REACT_APP_URL)
 
   return (
-    <Box className=" navBar w-screen h-[80px]">
+    <Box className=" w-screen h-[80px] ">
       {/* container */}
       <Box className="flex justify-between items-center w-full h-full">
         {/* leftSide */}
         <Box className="flex items-center ml-4">
           <img src={logo} alt="logo" className="h-[70px] rounded-[50%] " />
-          <Typography className="text-gray-300 text-2xl ml-3">
+          <Typography className="text-black text-2xl ml-3 cursor-pointer">
             College Finder
           </Typography>
         </Box>
 
         {/* rightSide */}
         <Box className="md:flex mr-4 hidden items-center">
-          <Typography className="text-gray-300 text-sm md:text-base mr-3 ml-1 hover:text-white">
+          <Typography className="text-black text-sm md:text-base mr-3 ml-1 hover:text-gray-600">
             <Link to="/">Home</Link>
           </Typography>
           {loggedInUser && (
-            <Typography className="text-gray-300 text-sm md:text-base mr-3 ml-1 hover:text-white">
+            <Typography className="text-black text-sm md:text-base mr-3 ml-1 hover:text-gray-600">
               <Link to="/dashboard">Dashboard</Link>
             </Typography>
           )}
           {!loggedInUser && (
-            <Typography className="text-gray-300 text-sm md:text-base mr-3 ml-1 hover:text-white">
+            <Typography className="text-black text-sm md:text-base mr-3 ml-1 hover:text-gray-600">
               <Link to="/signup">Sign Up</Link>
             </Typography>
           )}
           {!loggedInUser && (
-            <Typography className="text-gray-300 text-sm md:text-base mr-3 ml-1 hover:text-white">
+            <Typography className="text-black text-sm md:text-base mr-3 ml-1 hover:text-gray-600">
               <Link to="/login">Log In</Link>
             </Typography>
           )}
@@ -92,7 +92,7 @@ export default function NavBar() {
         <Box className="md:hidden block">
           <React.Fragment>
             <IconButton onClick={() => setOpenDrawer(true)}>
-              <MenuIcon className="text-3xl text-gray-300" />
+              <MenuIcon className="text-3xl text-black" />
             </IconButton>
             <Drawer
               anchor="top"
