@@ -62,7 +62,7 @@ export default function Home() {
     //window.scrollTo({ top: 90 });
   };
 
-  console.log(total)
+  
   
   
   if (loading) {
