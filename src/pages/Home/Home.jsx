@@ -6,6 +6,7 @@ import {
   Typography,
   useMediaQuery,
   CircularProgress,
+  Pagination
 } from "@mui/material";
 import Words from "./Words";
 
@@ -29,6 +30,13 @@ export default function Home() {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const otherSize = useMediaQuery("(min-width:600px)")
 
+  const total =  Math.ceil(values?.length / 5)
+  const [currentPage, setCurrent] = React.useState(1)
+  const postPerPage = 5;
+  const lastPostIndex = currentPage * postPerPage;
+  const firstsPostIndex = lastPostIndex - postPerPage;
+  let newValues = values?.slice(firstsPostIndex,lastPostIndex)
+
   function handleClick() {
     setErrorLength("");
     dispatch(searchData({ search }));
@@ -45,16 +53,24 @@ export default function Home() {
   React.useEffect(() => {
     dispatch(setSearchDataNull());
     dispatch(setError());
+    setCurrent(1)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleChange = (event, value) => {
+    setCurrent(value);
+    //window.scrollTo({ top: 90 });
+  };
+
+  console.log(total)
+  
+  
   if (loading) {
     return (
       <Stack
-        sx={{ color: "grey.500" }}
-        className="home h-screen w-full flex items-center"
+        className="home3 h-screen w-full flex items-center"
       >
-        <CircularProgress color="inherit" className="mt-[40px]" />
+        <CircularProgress color="secondary" className="mt-[40px]" />
       </Stack>
     );
   }
@@ -100,10 +116,27 @@ export default function Home() {
               </Box>
 
               <Box className="flex flex-col justify-center items-center mt-7">
-            {values?.map((item, index) => (
+            {newValues?.map((item, index) => (
               <SearchCard item={item} key={index} />
             ))}
           </Box>
+
+          {total !== "NaN" && total > 1 && (
+            <Stack
+              className=" flex justify-center items-center mb-10 mt-5"
+              spacing={2}
+            >
+              <Typography>Page: {currentPage}</Typography>
+              <Pagination
+                count={total}
+                page={currentPage}
+                onChange={handleChange}
+                sx={{ button: { color: "black" } }}
+                variant="outlined"
+                color="primary"
+              />
+            </Stack>
+          )}
 
               <Box className="flex flex-col pt-10 mt-4 justify-center items-center">
                 <Typography className={isNonMobile?"text-3xl font-semibold":"text-2xl font-semibold"}>
