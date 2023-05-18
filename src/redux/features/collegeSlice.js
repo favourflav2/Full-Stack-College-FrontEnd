@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { delete_College, get_Saved_School, like_College_Name, search_Data, search_Data_By_Id, search_Degree } from "../api";
+import { search_Enter } from "../searchApi";
 
 export const searchData = createAsyncThunk(
   "searchData",
   async (search, { rejectWithValue }) => {
     try {
-      const res = await search_Data(search);
-      //console.log(res.data)
-      return res.data;
+      const res = await search_Enter(search);
+      return res.data.results;
     } catch (e) {
       return rejectWithValue(e.response.data.msg);
     }

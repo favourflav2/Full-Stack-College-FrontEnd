@@ -39,7 +39,7 @@ export default function Home() {
 
   function handleClick() {
     setErrorLength("");
-    dispatch(searchData({ search }));
+    dispatch(searchData( search ));
   }
 
   React.useEffect(() => {
