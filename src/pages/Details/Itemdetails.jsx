@@ -61,19 +61,22 @@ export default function Itemdetails() {
       const res = await axios.get(
         `${process.env.REACT_APP_COLLEGE_API_URL}?api_key=${process.env.REACT_APP_COLLEGE_API_KEY}&id=${id}&fields=programs.cip_4_digit.title,programs.cip_4_digit.credential.title,programs.cip_4_digit.unit_id,programs.cip_4_digit.code`
       );
-      const data = {
-        data: res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
-          a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-        ),
-        currentPage: 1,
-        total: res.data.results[0]["latest.programs.cip_4_digit"].length,
-        numberOfPages: Math.ceil(
-          res.data.results[0]["latest.programs.cip_4_digit"].length /
-            postPerPage
-        ),
-      };
-      setDegreeData(data);
-      setLoading2(false);
+      if(res.data){
+        const data = {
+          data: res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
+            a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+          ),
+          currentPage: 1,
+          total: res.data.results[0]["latest.programs.cip_4_digit"].length,
+          numberOfPages: Math.ceil(
+            res.data.results[0]["latest.programs.cip_4_digit"].length /
+              postPerPage
+          ),
+        };
+        setDegreeData(data);
+        setLoading2(false);
+      }
+      
     } catch (e) {
       console.log(e);
       setError(e.message);
