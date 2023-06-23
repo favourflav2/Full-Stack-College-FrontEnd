@@ -63,7 +63,7 @@ export default function Itemdetails() {
       );
       if(res.data){
         const data = {
-          data: res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
+          data: res?.data?.results && res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
             a.title.toLowerCase().localeCompare(b.title.toLowerCase())
           ),
           currentPage: 1,
