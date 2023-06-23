@@ -61,28 +61,33 @@ export default function Itemdetails() {
       const res = await axios.get(
         `${process.env.REACT_APP_COLLEGE_API_URL}?api_key=${process.env.REACT_APP_COLLEGE_API_KEY}&id=${id}&fields=programs.cip_4_digit.title,programs.cip_4_digit.credential.title,programs.cip_4_digit.unit_id,programs.cip_4_digit.code`
       );
-      if(res.data){
+        
+        const dataArray = await res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
+        //console.log(dataArray)
         const data = {
-          data: res?.data?.results?.map(item => item["latest.programs.cip_4_digit"])[0],
+          data: dataArray,
           currentPage: 1,
-          total: res.data.results[0]["latest.programs.cip_4_digit"].length,
+          total: dataArray.length,
           numberOfPages: Math.ceil(
-            res.data.results[0]["latest.programs.cip_4_digit"].length /
+            dataArray.length /
               postPerPage
           ),
-        };
+          }
         //res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
         //a.title.toLowerCase().localeCompare(b.title.toLowerCase())
         //),
         setDegreeData(data);
         setLoading2(false);
-      }
       
+    
     } catch (e) {
       console.log(e);
       setError(e.message);
     }
   }
+
+
+
   React.useEffect(() => {
     getDetails();
   getDegreeById();
@@ -107,7 +112,7 @@ export default function Itemdetails() {
 
   return (
     <>
-      {loading && loading2 ? (
+      {loading || loading2 ? (
         <Stack
           sx={{ color: "grey.500" }}
           className="home h-screen w-full flex items-center justify-center"
