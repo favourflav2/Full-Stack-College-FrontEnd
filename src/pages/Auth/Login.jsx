@@ -9,7 +9,7 @@ export default function Login() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {error} = useSelector(state => state.auth)
+  const {error,loading} = useSelector(state => state.auth)
   const [formData,setFormData] = React.useState({
     email:'',
     password:'',
@@ -79,7 +79,7 @@ export default function Login() {
 
                           {/* Buttons */}
                       <Box className='flex flex-col justify-center mt-8 mb-5'>
-                          <button className='w-full bg-gray-300 hover:bg-blue-400 text-black rounded-lg text-xl font-bold'>Log In</button>
+                          <button className='w-full bg-gray-300 hover:bg-blue-400 text-black rounded-lg text-xl font-bold' disabled={loading}>{loading? "Loading...": "Log In"}</button>
 
                           <Box className='flex justify-center mb-2 mt-3'>
                           <Typography className='text-black'>Dont already have an account? <Link to='/signup'><span className='text-blue-600 border-b border-blue-600 hover:text-[18px] hover:text-blue-800 hover:border-blue-800'>Sign Up</span></Link></Typography>
