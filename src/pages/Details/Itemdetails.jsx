@@ -62,7 +62,7 @@ export default function Itemdetails() {
         `${process.env.REACT_APP_COLLEGE_API_URL}?api_key=${process.env.REACT_APP_COLLEGE_API_KEY}&id=${id}&fields=programs.cip_4_digit.title,programs.cip_4_digit.credential.title,programs.cip_4_digit.unit_id,programs.cip_4_digit.code`
       );
       const data = {
-        data: res.data.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
+        data: res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
           a.title.toLowerCase().localeCompare(b.title.toLowerCase())
         ),
         currentPage: 1,
