@@ -21,7 +21,7 @@ export default function Itemdetails() {
   const { id } = useParams();
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { savedCollegeName,degreeById } = useSelector((state) => state.college);
+  const { savedCollegeName,degreeById,loading} = useSelector((state) => state.college);
   const [currentPage, setCurrent] = React.useState(1);
   const postPerPage = 35;
   const lastPostIndex = currentPage * postPerPage;
@@ -30,8 +30,8 @@ export default function Itemdetails() {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   // const schoolName = dataById && dataById[0]["school.name"];
 
-  const [loading, setLoading] = React.useState(true);
-  const [loading2, setLoading2] = React.useState(false);
+  const [loading2, setLoading2] = React.useState(true);
+  
   const [error, setError] = React.useState("");
   const [dataById, setDataById] = React.useState([]);
   
@@ -48,7 +48,7 @@ export default function Itemdetails() {
       );
       //console.log(res.data.results);
       setDataById(res.data.results);
-      setLoading(false);
+      setLoading2(false);
     } catch (e) {
       console.log(e);
       setError(e.message);

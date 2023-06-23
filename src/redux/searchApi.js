@@ -10,6 +10,6 @@ export function search_Enter(search){
 }
 
 export function get_Degree_By_Id(id){
-    return API.get(`${process.env.REACT_APP_COLLEGE_API_URL}?api_key=${process.env.REACT_APP_COLLEGE_API_KEY}&id=${id}&fields=programs.cip_4_digit.title,programs.cip_4_digit.credential.title,programs.cip_4_digit.unit_id,programs.cip_4_digit.code`)
+    return API.get(`?api_key=${process.env.REACT_APP_COLLEGE_API_KEY}&id=${id}&fields=programs.cip_4_digit.title,programs.cip_4_digit.credential.title,programs.cip_4_digit.unit_id,programs.cip_4_digit.code`)
 }
 
