@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useDispatch, useSelector } from "react-redux";
-import { likeCollegeName } from "../../redux/features/collegeSlice";
+import { likeCollegeName, searchDegree } from "../../redux/features/collegeSlice";
 import DetailsCard from "../../components/Card/DetailsCard";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -21,7 +21,7 @@ export default function Itemdetails() {
   const { id } = useParams();
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { savedCollegeName } = useSelector((state) => state.college);
+  const { savedCollegeName,degreeById } = useSelector((state) => state.college);
   const [currentPage, setCurrent] = React.useState(1);
   const postPerPage = 35;
   const lastPostIndex = currentPage * postPerPage;
@@ -31,10 +31,10 @@ export default function Itemdetails() {
   // const schoolName = dataById && dataById[0]["school.name"];
 
   const [loading, setLoading] = React.useState(true);
-  const [loading2, setLoading2] = React.useState(true);
+  const [loading2, setLoading2] = React.useState(false);
   const [error, setError] = React.useState("");
   const [dataById, setDataById] = React.useState([]);
-  const [degreeData, setDegreeData] = React.useState([]);
+  
   const schoolName = dataById.length && dataById[0]["school.name"];
 
   const filterSavedSchools =
@@ -55,45 +55,19 @@ export default function Itemdetails() {
     }
   }
 
-  async function getDegreeById() {
-    try {
-      
-      const res = await axios.get(
-        `${process.env.REACT_APP_COLLEGE_API_URL}?api_key=${process.env.REACT_APP_COLLEGE_API_KEY}&id=${id}&fields=programs.cip_4_digit.title,programs.cip_4_digit.credential.title,programs.cip_4_digit.unit_id,programs.cip_4_digit.code`
-      );
-        
-        const dataArray = await res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
-        //console.log(dataArray)
-        const data = {
-          data: dataArray,
-          currentPage: 1,
-          total: dataArray.length,
-          numberOfPages: Math.ceil(
-            dataArray.length /
-              postPerPage
-          ),
-          }
-        //res?.data?.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>
-        //a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-        //),
-        setDegreeData(data);
-        setLoading2(false);
-      
-    
-    } catch (e) {
-      console.log(e);
-      setError(e.message);
-    }
-  }
+  
 
 
 
   React.useEffect(() => {
-    getDetails();
-  getDegreeById();
+  getDetails();
+  
   }, []); // eslint-disable-line
 
-
+React.useEffect(()=>{
+  //console.log(degreeData)
+  dispatch(searchDegree({id,currentPage}))
+},[])
   // React.useEffect(()=>{
     
   //   const savee = degreeData?.data.map(item => console.log(item["latest.programs.cip_4_digit"]))
@@ -338,22 +312,20 @@ export default function Itemdetails() {
                     : "flex flex-col mt-[50px] gap-6 mb-10"
                 }
               >
-                {degreeData &&
-                  degreeData?.data
-                    ?.slice(firstsPostIndex, lastPostIndex)
-                    .map((item, index) => (
+                {degreeById &&
+                  degreeById?.data?.slice(firstsPostIndex, lastPostIndex).map((item, index) => (
                       <DetailsCard key={index} item={item} id={id} />
                     ))}
               </Box>
 
-              {degreeData && degreeData?.numberOfPages > 1 && (
+              {degreeById && degreeById?.numberOfPages > 1 && (
                 <Stack
                   className=" flex justify-center items-center mb-10 mt-5"
                   spacing={2}
                 >
                   <Typography>Page: {currentPage}</Typography>
                   <Pagination
-                    count={degreeData?.numberOfPages}
+                    count={degreeById?.numberOfPages}
                     page={currentPage}
                     onChange={handleChange}
                     sx={{ button: { color: "black" } }}

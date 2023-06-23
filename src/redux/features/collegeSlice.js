@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { delete_College, get_Saved_School, like_College_Name, search_Data, search_Data_By_Id, search_Degree } from "../api";
-import { search_Enter } from "../searchApi";
+import {
+  delete_College,
+  get_Saved_School,
+  like_College_Name,
+  search_Data,
+  search_Data_By_Id,
+  search_Degree,
+} from "../api";
+import { get_Degree_By_Id, search_Enter } from "../searchApi";
 
 export const searchData = createAsyncThunk(
   "searchData",
@@ -18,9 +25,16 @@ export const searchDegree = createAsyncThunk(
   "searchDegree",
   async ({id,currentPage}, { rejectWithValue }) => {
     try {
-      const res = await search_Degree(id,currentPage);
-      //console.log(res.data)
-      return res.data;
+      const res = await get_Degree_By_Id(id);
+      //console.log(res.data.results[0]["latest.programs.cip_4_digit"]);
+      const data = {
+        data: res.data.results[0]["latest.programs.cip_4_digit"].sort((a, b) =>a.title.toLowerCase().localeCompare(b.title.toLowerCase())),
+        currentPage: currentPage,
+        total: res.data.results[0]["latest.programs.cip_4_digit"].length,
+        numberOfPages: Math.ceil(res.data.results[0]["latest.programs.cip_4_digit"].length / 35),
+      };
+      //console.log(data)
+      return data;
     } catch (e) {
       return rejectWithValue(e.response.data.msg);
     }
@@ -42,9 +56,19 @@ export const searchDataById = createAsyncThunk(
 
 export const likeCollegeName = createAsyncThunk(
   "like",
-  async ({id,name,code,degreeName,zip,city,state}, { rejectWithValue }) => {
+  async (
+    { id, name, code, degreeName, zip, city, state },
+    { rejectWithValue }
+  ) => {
     try {
-      const res = await like_College_Name(id,{name,code,degreeName,state,city,zip});
+      const res = await like_College_Name(id, {
+        name,
+        code,
+        degreeName,
+        state,
+        city,
+        zip,
+      });
       //console.log(res.data)
       return res.data;
     } catch (e) {
@@ -53,13 +77,12 @@ export const likeCollegeName = createAsyncThunk(
   }
 );
 
-
 export const deleteCollege = createAsyncThunk(
   "delete",
-  async ({id,toast}, { rejectWithValue }) => {
+  async ({ id, toast }, { rejectWithValue }) => {
     try {
-      const res = await delete_College({id:id});
-      toast.success("College Deleted")
+      const res = await delete_College({ id: id });
+      toast.success("College Deleted");
       return res.data;
     } catch (e) {
       return rejectWithValue(e.response.data.msg);
@@ -79,7 +102,6 @@ export const getSavedSchool = createAsyncThunk(
   }
 );
 
-
 const collegeSlice = createSlice({
   name: "college",
   initialState: {
@@ -87,28 +109,25 @@ const collegeSlice = createSlice({
     error: "",
     data: "",
     searchData: null,
-    dataById:null,
-    degreeById:null,
-    numberOfPages:null,
-    savedCollegeName:[],
-
+    dataById: null,
+    degreeById: null,
+    numberOfPages: null,
+    savedCollegeName: [],
   },
-  reducers:{
-    setError:(state)=>{
-      state.error = ""
+  reducers: {
+    setError: (state) => {
+      state.error = "";
     },
-    setSearchById:(state)=>{
-      state.dataById = null
+    setSearchById: (state) => {
+      state.dataById = null;
     },
-  setSearchDataNull:(state) =>{
-    state.searchData = null
-    state.loading = false
-  },
-  clearSavedCollegeName:(state) =>{
-    state.savedCollegeName = []
-  },
-  
-
+    setSearchDataNull: (state) => {
+      state.searchData = null;
+      state.loading = false;
+    },
+    clearSavedCollegeName: (state) => {
+      state.savedCollegeName = [];
+    },
   },
 
   extraReducers: (builder) => {
@@ -147,9 +166,7 @@ const collegeSlice = createSlice({
       .addCase(searchDegree.fulfilled, (state, action) => {
         // console.log(action);
         state.loading = false;
-        state.degreeById = action.payload.data;
-        state.numberOfPages = action.payload.numberOfPages
-        state.currentPage = action.payload.currentPage
+        state.degreeById = action.payload
       })
       .addCase(searchDegree.rejected, (state, action) => {
         //console.log(action);
@@ -163,7 +180,7 @@ const collegeSlice = createSlice({
       .addCase(likeCollegeName.fulfilled, (state, action) => {
         // console.log(action);
         state.loading = false;
-        state.savedCollegeName = action.payload
+        state.savedCollegeName = action.payload;
       })
       .addCase(likeCollegeName.rejected, (state, action) => {
         //console.log(action);
@@ -177,7 +194,7 @@ const collegeSlice = createSlice({
       .addCase(deleteCollege.fulfilled, (state, action) => {
         // console.log(action);
         state.loading = false;
-        state.savedCollegeName = action.payload
+        state.savedCollegeName = action.payload;
       })
       .addCase(deleteCollege.rejected, (state, action) => {
         //console.log(action);
@@ -191,16 +208,21 @@ const collegeSlice = createSlice({
       .addCase(getSavedSchool.fulfilled, (state, action) => {
         // console.log(action);
         state.loading = false;
-        state.savedCollegeName = action.payload
+        state.savedCollegeName = action.payload;
       })
       .addCase(getSavedSchool.rejected, (state, action) => {
         //console.log(action);
         state.loading = false;
         state.error = action.payload;
-      })
+      });
   },
 });
 
 export default collegeSlice.reducer;
 
-export const {setError,setSearchById,setSearchDataNull,clearSavedCollegeName} = collegeSlice.actions
+export const {
+  setError,
+  setSearchById,
+  setSearchDataNull,
+  clearSavedCollegeName,
+} = collegeSlice.actions;
