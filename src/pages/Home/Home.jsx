@@ -28,7 +28,7 @@ export default function Home() {
   const [errorLength, setErrorLength] = React.useState("");
   const [search, setSearch] = React.useState("");
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const otherSize = useMediaQuery("(min-width:600px)")
+ 
 
   const total =  Math.ceil(values?.length / 5)
   const [currentPage, setCurrent] = React.useState(1)
