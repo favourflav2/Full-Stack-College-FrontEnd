@@ -190,7 +190,7 @@ export default function Home() {
           {/* Number 1 */}
           <Box className="flex flex-col lg:flex-row my-4 border-2 border-gray-400">
             <img
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
               alt=""
               className={isNonMobile?"h-[267px]":"h-[200px]"}
             />
@@ -213,7 +213,7 @@ export default function Home() {
             {/* Number 2 */}
           <Box className="flex flex-col lg:flex-row my-4 border-2 border-gray-400">
             <img
-              src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1373&q=80"
+              src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
               alt=""
               className={isNonMobile?"h-[300px]":"h-[200px]"}
             />
@@ -236,7 +236,7 @@ export default function Home() {
             {/* Number 3 */}
           <Box className="flex flex-col lg:flex-row my-4 border-2 border-gray-400">
             <img
-              src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1373&q=80"
+              src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
               alt=""
               className={isNonMobile?"h-[300px]":"h-[200px]"}
             />

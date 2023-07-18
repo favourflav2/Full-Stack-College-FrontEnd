@@ -9,7 +9,7 @@ import main2 from "../../assets/main2.jpg";
 import main3 from "../../assets/main3.jpg";
 
 export default function Slider() {
-  const arr = [ main3,main1, main2];
+  const arr = [ main1];
 
   return (
     <Carousel
@@ -32,7 +32,7 @@ export default function Slider() {
           <img
             src={item}
             alt=""
-            className=" object-cover w-[100%] md:max-h-[700px] h-auto bg-fixed cursor-pointer"
+            className=" object-cover w-full sm:max-h-[400px] h-auto bg-fixed cursor-pointer"
           />
         </Box>
       ))}
